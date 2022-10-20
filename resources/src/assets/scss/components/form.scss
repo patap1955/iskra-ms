@@ -1,0 +1,22 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+
+    button {
+        margin-top: 15px;
+    }
+}
+
+.form-group {
+    border-bottom: 1px solid #A5B3C5;
+}
+
+.form-control {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 0;
+    font-size: 14px;
+    line-height: 19px;
+    color: #160800;
+}

@@ -1,0 +1,22 @@
+#licenses {
+    margin-top: 80px;
+
+    @media (max-width: 400px) {
+        margin-top: 0;
+    }
+}
+
+.licenses {
+    &__title {
+        margin-bottom: 40px;
+        font-weight: 900;
+        font-size: 30px;
+        line-height: 37px;
+        text-align: center;
+        color: #001F43;
+
+        @media (max-width: 480px) {
+            font-size: 24px;
+        }
+    }
+}

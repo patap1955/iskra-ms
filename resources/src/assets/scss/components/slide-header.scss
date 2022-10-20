@@ -1,0 +1,49 @@
+.screen-show{
+    opacity: 0;
+}
+
+.screen-show.fade {
+    opacity: 1;
+}
+
+/* Исчезающая анимация */
+.fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 3s;
+    animation-name: fade;
+    animation-duration: 3s;
+    transition: all 3s ease;
+}
+
+.noFade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1s;
+    animation-name: fade;
+    animation-duration: 1s;
+    transition: all 1s ease;
+}
+
+@-webkit-keyframes fade {
+    0% {opacity: 0}
+    75% {opacity: 1}
+    100% {opacity: 0}
+
+}
+
+@keyframes fade {
+    0% {opacity: 0}
+    75% {opacity: 1}
+    100% {opacity: 0}
+}
+
+@-webkit-keyframes noFade {
+    0% {opacity: 1}
+    75% {opacity: .5}
+    100% {opacity: 0}
+}
+
+@keyframes noFade {
+    0% {opacity: 1}
+    75% {opacity: .5}
+    100% {opacity: 0}
+}

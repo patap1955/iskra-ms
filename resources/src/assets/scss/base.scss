@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Raleway:wght@900&display=swap');
+
+*{
+    scrollbar-width: thin;
+    scrollbar-color: #80bcff #D6E9FF;
+}
+
+*::-webkit-scrollbar {
+    height: 14px;
+    width: 10px;
+}
+
+*::-webkit-scrollbar-track{
+    background: #D6E9FF;
+}
+
+*::-webkit-scrollbar-thumb{
+    background-color: #80bcff;
+    border-radius: 500px;
+    border: 10px solid #80bcff;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Montserrat;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+html, body {
+    overscroll-behavior-x: none;
+}
+
+body{
+    /*	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;*/
+    overflow-x: hidden;
+    -webkit-overflow-x: hidden;
+    -moz-overflow-x: hidden;
+    -ms-overflow-x: hidden;
+    -o-overflow-x: hidden;
+}
+
+@media (max-width: 992px) {
+    body.lock {
+        overflow: hidden;
+    }
+}
+
+img {
+    width: 100%;
+}
+
+section {
+    margin-top: 70px;
+}
+
+.container {
+    position: relative;
+    max-width: 1168px;
+    min-width: 200px;
+    margin: 0 auto;
+    z-index: 0;
+
+    @media (max-width: 1166px) {
+        overflow: hidden;
+    }
+}
+
+.main {
+    position: relative;
+    z-index: 0;
+}
+
+.main.active {
+    z-index: -1;
+}
+
+@media (max-width: 1200px) {
+    .container {
+        padding: 0 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+}

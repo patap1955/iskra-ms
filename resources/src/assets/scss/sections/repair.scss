@@ -1,0 +1,109 @@
+#repair {
+    margin-top: 80px;
+}
+
+.repair {
+    position: relative;
+    z-index: 0;
+    &__title {
+        font-weight: 900;
+        font-size: 30px;
+        line-height: 37px;
+        text-align: center;
+        color: #001F43;
+
+        @media (max-width: 480px) {
+            font-size: 24px;
+        }
+    }
+
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        column-gap: 66px;
+        row-gap: 30px;
+        justify-content: center;
+        margin-top: 40px;
+        padding: 25px 0;
+    }
+
+    &__item {
+        display: flex;
+        justify-content: start;
+        padding: 24px 26px 24px 0;
+        width: 500px;
+        background: #FFFFFF;
+        box-shadow: 0px 0px 20px rgba(184, 203, 225, 0.5);
+        border-radius: 20px;
+
+        @media (max-width: 480px) {
+            column-gap: 15px;
+            padding-right: 15px;
+        }
+
+        &-left {
+            display: grid;
+            grid-auto-columns: 100px auto;
+            align-items: center;
+
+            @media (max-width: 480px) {
+                grid-auto-columns: 75px auto;
+            }
+        }
+
+        &-left-icon {
+            margin-left: -50%;
+            
+            @media (max-width: 565px) {
+                margin-left: -25px;
+            }
+
+            @media (max-width: 480px) {
+                margin-left: 0;
+            }
+        }
+
+        &-right {
+            margin-left: -40px;
+
+            @media (max-width: 565px) {
+                margin-left: 0;
+            }
+            &-title {
+                margin-bottom: 15px;
+                font-weight: 700;
+                font-size: 22px;
+                line-height: 29px;
+                color: #001F43;
+            }
+
+            &-text {
+                font-size: 16px;
+                line-height: 25px;
+                color: #160800;
+
+                &-link {
+                    font-size: 18px;
+                    color: #0075ff;
+                    display: block;
+                }
+            }
+
+            @media (max-width: 375px) {
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+.polygon4 {
+    position: absolute;
+    width: 722px;
+    height: 791px;
+    bottom: 40px;
+    right: -715px;
+
+    @media (max-width: 480px) {
+        display: none;
+    }
+}

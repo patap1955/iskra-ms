@@ -1,0 +1,202 @@
+#form {
+    margin-top: 80px;
+}
+
+.contacts {
+    position: relative;
+    z-index: 0;
+
+    &__title {
+        font-weight: 900;
+        font-size: 30px;
+        line-height: 37px;
+        text-align: center;
+        color: #001F43;
+
+        @media (max-width: 480px) {
+            font-size: 24px;
+        }
+    }
+
+    &__info {
+        margin-top: 40px;
+        display: flex;
+        justify-content: space-between;
+
+        @media (max-width: 992px) {
+            display: grid;
+            grid-template-columns: 50% 33%;
+            justify-content: center;
+            column-gap: 50px;
+            row-gap: 30px;
+        }
+
+        @media (max-width: 768px) {
+            grid-template-columns: 60%;
+            //margin: 40px auto 0 auto;
+        }
+
+        @media (max-width: 620px) {
+            grid-template-columns: 80%;
+            //margin: 40px auto 0 auto;
+        }
+
+        @media (max-width: 480px) {
+            grid-template-columns: 100%;
+            //margin: 40px auto 0 auto;
+        }
+
+        &-item {
+            display: flex;
+            align-items: center;
+            column-gap: 30px;
+
+            &-icon {
+                display: flex;
+                align-items: center;
+            }
+
+            &-text {
+                font-size: 16px;
+                line-height: 25px;
+                color: #160800;
+
+                @media (max-width: 375px) {
+                    font-size: 14px;
+                }
+
+                a {
+                    font-size: 16px;
+                    line-height: 25px;
+                    color: #160800;
+                }
+
+                a:hover {
+                    color: #0075ff;
+                }
+            }
+        }
+    }
+
+    &__block {
+        display: flex;
+        grid-template-columns: 470px 670px;
+        justify-content: space-between;
+        column-gap: 30px;
+        margin-top: 30px;
+        
+        @media (max-width: 992px) {
+            grid-template-columns: 360px auto;
+        }
+
+        @media (max-width: 768px) {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            row-gap: 50px;
+        }
+
+        &-form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 470px;
+            row-gap: 30px;
+
+            @media (max-width: 992px) {
+                width: 38%;
+            }
+
+            @media (max-width: 768px) {
+                width: 470px;
+                margin: 0 auto;
+            }
+
+            @media (max-width: 520px) {
+                width: 100%;
+            }
+
+            &-text {
+                font-size: 16px;
+                line-height: 25px; color: #160800;
+            }
+        }
+
+        &-map {
+            position: relative;
+            z-index: 1;
+            width: 59%;
+            height: 400px;
+            @media (max-width: 1168px) {
+                width: 52%;
+            }
+
+            @media (max-width: 992px) {
+                width: 59%;
+            }
+
+            @media (max-width: 768px) {
+                width: 100%;
+            }
+
+            @media (max-width: 620px) {
+                height: 300px;
+            }
+
+            @media (max-width: 480px) {
+                height: 250px;
+            }
+
+            @media (max-width: 480px) {
+                height: 200px;
+            }
+        }
+    }
+}
+
+.polygon6 {
+    position: absolute;
+    top: 125px;
+    left: 420px;
+    width: 993px;
+    height: 540px;
+
+    @media (max-width: 1200px) {
+        left: 438px
+    }
+
+    @media (max-width: 1168px) {
+        left: 42%;
+    }
+
+    @media (max-width: 992px) {
+        top: 180px;
+        left: 35%;
+    }
+
+    @media (max-width: 768px) {
+        width: unset;
+        max-width: 140vw;
+        top: unset;
+        bottom: -100px;
+        left: -30px;
+    }
+    
+    @media (max-width: 620px) {
+        display: none;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 830px){
+    .contacts-btn {
+        padding: 16px 30px;
+    }
+}
+
+ymaps {
+    border-radius: 30px;
+
+    @media (max-width: 620px) {
+        height: 300px;
+    }
+}
