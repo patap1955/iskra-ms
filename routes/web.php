@@ -21,3 +21,11 @@ Route::get('/', [\App\Http\Controllers\PageController::class, "index"])->name("i
 Route::get('/news', [\App\Http\Controllers\PageController::class, "news"])->name("news");
 Route::get('/news/{title}', [\App\Http\Controllers\PageController::class, "showNews"])->name("show-news");
 Route::post('/form-contacts', [\App\Http\Controllers\PageController::class, "formContacts"])->name("form-contacts");
+
+Auth::routes();
+
+Route::prefix('amg-admin')->group(function () {
+    Route::get('/', \App\Http\Controllers\Admin\AdminController::class)->name("admin.index");
+    Route::resource("article", \App\Http\Controllers\Admin\AdminArticlesController::class);
+
+});
