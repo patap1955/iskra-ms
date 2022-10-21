@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\ArticleRequest;
 use App\Models\Article;
 use Illuminate\Http\Request;
 
@@ -34,9 +35,17 @@ class AdminArticlesController extends AdminController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
-        dd($request->files);
+        $path = "uploads/articles/thumbs";
+        $validate = $request->validated();
+        $newFileName = time() . "." . $validate["img"]->clientExtension();
+        $validate["img"] = $path . "/" .$newFileName;
+        $validate["status_view"] = ($validate["status_view"]) ? true : false;
+        if (Article::create($validate)) {
+            $request->file("img")->storeAs($path, $newFileName, "public");
+            return redirect()->route('article.index');
+        }
     }
 
     /**
