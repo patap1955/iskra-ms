@@ -29,3 +29,8 @@ Route::prefix('amg-admin')->group(function () {
     Route::resource("article", \App\Http\Controllers\Admin\AdminArticlesController::class);
 
 });
+
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
+

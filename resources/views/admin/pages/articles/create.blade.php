@@ -67,7 +67,7 @@
                                 </div>
                                 <div class="form-group mt-3">
                                     <label for="summernote">Текс статьи</label>
-                                    <textarea name="text" id="summernote" style="display: none;"></textarea>
+                                    <textarea name="text" id="articleTextEditor" style="display: none;"></textarea>
                                 </div>
                             </div>
 
@@ -86,18 +86,16 @@
 @endsection
 
 @section("scripts")
-    <script src="{{ asset("adminlte//plugins/summernote/summernote-bs4.min.js") }}"></script>
+    <script src="{{ asset("adminlte//plugins/ckeditor/ckeditor.js") }}"></script>
     <script>
-        $(function () {
-            // Summernote
-            $('#summernote').summernote()
-
-            // CodeMirror
-            CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
-                mode: "htmlmixed",
-                theme: "monokai"
-            });
-        })
+        var options = {
+            filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+            filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+            filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+            filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+        };
+        CKEDITOR.replace('articleTextEditor', options);
+    </script>
     </script>
 @endsection
 

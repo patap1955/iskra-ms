@@ -2578,88 +2578,130 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each.js */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
 /* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var core_js_modules_es_number_constructor_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.number.constructor.js */ "./node_modules/core-js/modules/es.number.constructor.js");
-/* harmony import */ var core_js_modules_es_number_constructor_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_number_constructor_js__WEBPACK_IMPORTED_MODULE_2__);
 
 
+var containers;
 
+function initDrawers() {
+  // Получаем контейнер с контентом
+  containers = document.querySelectorAll(".questions__item");
+  setHeights();
+  wireUpTriggers();
+  window.addEventListener("resize", setHeights);
+}
 
-(function () {
-  // открытие ответа на вопрос
-  var acc = document.getElementsByClassName("questions__accordion");
-  var i;
+window.addEventListener("load", initDrawers);
 
-  for (i = 0; i < acc.length; i++) {
-    acc[i].addEventListener("click", function () {
-      this.classList.toggle("questions__active");
-      var panel = this.nextElementSibling;
+function setHeights() {
+  containers.forEach(function (container) {
+    // Получаем контент
+    var content = container.querySelector(".content");
+    content.removeAttribute("aria-hidden"); // Высота контента, который нужно скрыть/показать
 
-      if (panel.style.maxHeight) {
-        panel.style.maxHeight = null;
-      } else {
-        panel.style.maxHeight = panel.scrollHeight + "px";
-      }
-    });
-  } //открытие остальных вопросов
+    var heightOfContent = content.getBoundingClientRect().height; // Задаем пользовательские свойства CSS с высотой контента
 
+    container.style.setProperty("--containerHeight", "".concat(heightOfContent, "px")); // Когда высота считана и задана
 
-  var questionsStart = 0;
-  var questionsButton = document.getElementById("questionsButton");
-  var questionsList = document.querySelectorAll(".questions-item");
-
-  function countQuestionsActive() {
-    var count = [];
-    questionsList.forEach(function (element) {
-      if (element && element.dataset.questionsList == questionsStart) {
-        count.push(element);
-      }
-    });
-    return count;
-  }
-
-  function questionsRender() {
-    var activeQuestions = countQuestionsActive();
-
-    if (activeQuestions.length > 0) {
-      activeQuestions.forEach(function (element, key) {
-        setTimeout(function () {
-          element.style.display = "block";
-          element.classList.add("active");
-        }, 500 * key);
-      });
-      questionsStart++;
-      return true;
-    } else {
-      questionsStart = 0;
-      return false;
-    }
-  }
-
-  questionsRender();
-  questionsButton.addEventListener("click", function (event) {
-    event.preventDefault();
-    var questionsList = document.querySelectorAll(".questions-item");
-    var activeQuestions = [];
-    questionsList.forEach(function (element) {
-      if (element && element.dataset.questionsList == questionsStart) {
-        activeQuestions.push(element);
-      }
-    });
-    var questionsListId = event.target.dataset.questionsButton;
-    questionsButton.dataset.questionsButton = Number(questionsListId) + 1;
-
-    if (!questionsRender()) {
-      event.target.dataset.questionsButton = "0";
-      questionsStart = 0;
-      questionsList.forEach(function (element) {
-        if (element.dataset.questionsList != questionsStart) {
-          element.classList.remove("active");
-          element.removeAttribute("style");
-        }
-      });
-    }
+    setTimeout(function (e) {
+      container.classList.add("height-is-set");
+      content.setAttribute("aria-hidden", "true");
+    }, 0);
   });
-})();
+}
+
+function wireUpTriggers() {
+  containers.forEach(function (container) {
+    // Получаем все элементы-триггеры
+    var btn = container.querySelector(".questions__item-trigger"); // Получаем контент
+
+    var content = container.querySelector(".content");
+    btn.addEventListener("click", function (e) {
+      e.target.classList.toggle("active");
+      btn.setAttribute("aria-expanded", btn.getAttribute("aria-expanded") === "false" ? "true" : "false");
+      container.setAttribute("data-drawer-showing", container.getAttribute("data-drawer-showing") === "true" ? "false" : "true");
+      content.setAttribute("aria-hidden", content.getAttribute("aria-hidden") === "true" ? "false" : "true");
+    });
+  });
+} // (function () {
+//
+//   // открытие ответа на вопрос
+//   const acc = document.getElementsByClassName("questions__accordion");
+//   let i;
+//
+//   for (i = 0; i < acc.length; i++) {
+//     acc[i].addEventListener("click", function() {
+//       this.classList.toggle("questions__active");
+//       const panel = this.nextElementSibling;
+//       if (panel.style.maxHeight) {
+//         panel.style.maxHeight = null;
+//       } else {
+//         panel.style.maxHeight = panel.scrollHeight + "px";
+//       }
+//     });
+//   }
+//
+//
+//   //открытие остальных вопросов
+//   let questionsStart = 0;
+//   const questionsButton = document.getElementById("questionsButton");
+//   const questionsList = document.querySelectorAll(".questions-item");
+//
+//   function countQuestionsActive() {
+//     let count = [];
+//     questionsList.forEach((element) => {
+//       if (element && element.dataset.questionsList == questionsStart) {
+//         count.push(element);
+//       }
+//     });
+//     return count;
+//   }
+//
+//   function questionsRender() {
+//     let activeQuestions = countQuestionsActive();
+//     if (activeQuestions.length > 0) {
+//       activeQuestions.forEach((element, key) => {
+//         setTimeout(() => {
+//           element.style.display = "block";
+//           element.classList.add("active");
+//         }, 500*key);
+//       });
+//       questionsStart++;
+//       return true;
+//     } else {
+//       questionsStart = 0;
+//       return false;
+//     }
+//   }
+//
+//   questionsRender();
+//
+//   questionsButton.addEventListener("click", (event) => {
+//     event.preventDefault();
+//     const questionsList = document.querySelectorAll(".questions-item");
+//
+//     let activeQuestions = [];
+//     questionsList.forEach((element) => {
+//       if (element && element.dataset.questionsList == questionsStart) {
+//         activeQuestions.push(element);
+//       }
+//     });
+//     let questionsListId = event.target.dataset.questionsButton;
+//     questionsButton.dataset.questionsButton = Number(questionsListId) + 1;
+//
+//
+//     if (!questionsRender()) {
+//       event.target.dataset.questionsButton = "0";
+//       questionsStart = 0;
+//       questionsList.forEach((element) => {
+//         if (element.dataset.questionsList != questionsStart) {
+//           element.classList.remove("active");
+//           element.removeAttribute("style");
+//         }
+//       });
+//     }
+//   });
+//
+// })();
 
 /***/ }),
 
