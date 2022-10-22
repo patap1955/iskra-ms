@@ -36,7 +36,7 @@
                         <table class="table table-striped projects">
                             <thead>
                             <tr>
-                                <th style="width: 3%">
+                                <th style="width: 10%">
                                     #
                                 </th>
                                 <th style="width: 50%">
@@ -45,22 +45,27 @@
                                 <th style="width: 8%" class="text-center">
                                     Статус
                                 </th>
-                                <th style="width: 39%">
+                                <th style="width: 32%">
                                 </th>
                             </tr>
                             </thead>
                             <tbody>
+                            @foreach($articles as $article)
                             <tr>
                                 <td>
-                                    #
+                                    <img style="width: 100%" src="{{ asset("storage/" . $article->img) }}">
                                 </td>
                                 <td>
-                                    <a>
-                                        AdminLTE v3
+                                    <a href="{{ route("article.edit", ["article" => $article->id]) }}">
+                                        {{ $article->title }}
                                     </a>
                                 </td>
                                 <td class="project-state">
-                                    <span class="badge badge-success">Success</span>
+                                    @if($article->status_view)
+                                    <span class="badge badge-success">Опублекованна</span>
+                                    @else
+                                        <span class="badge badge-warning">не опублекованна</span>
+                                    @endif
                                 </td>
                                 <td class="project-actions text-right">
                                     <a class="btn btn-info btn-sm" href="#">
@@ -75,6 +80,7 @@
                                     </a>
                                 </td>
                             </tr>
+                            @endforeach
                             </tbody>
                         </table>
                         <a href="{{ route("article.create") }}" class="btn btn-primary btn-sm mt-3 mb-3 ml-3">Добавить статью</a>

@@ -54,10 +54,10 @@ class AdminArticlesController extends AdminController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
+//    public function show($id)
+//    {
+//        //
+//    }
 
     /**
      * Show the form for editing the specified resource.
@@ -65,9 +65,9 @@ class AdminArticlesController extends AdminController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Article $article)
     {
-        //
+        return view("admin.pages.articles.edit", compact("article"));
     }
 
     /**
@@ -77,9 +77,12 @@ class AdminArticlesController extends AdminController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ArticleRequest $request, Article $article)
     {
-        //
+        $validate = $request->validated();
+        $validate["status_view"] = ($validate["status_view"]) ? true : false;
+        $article->update($validate);
+        return redirect()->route('article.index');
     }
 
     /**

@@ -3,7 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class ArticleRequest extends FormRequest
 {
@@ -22,12 +24,22 @@ class ArticleRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules(Request $request)
     {
         return [
-            'title' => 'required|unique:articles|max:255',
+            "title" => [
+                "required",
+                "max:255",
+                Rule::unique('articles', 'title')->ignore($request->title)
+            ],
+            //"title" => "required|unique:articles|max:255",
             'description' => 'max:255',
-            "slug" => "required|unique:articles|max:255",
+            "slug" => [
+                "required",
+                "max:255",
+                Rule::unique('articles', 'slug')->ignore($request->slug)
+            ],
+            //"slug" => "required|unique:articles|max:255",
             "img" => "file|image",
             "status_view" => "accepted",
             "text" => ""

@@ -89,7 +89,7 @@
 @endsection
 
 @section("scripts")
-    <script src="{{ asset("adminlte//plugins/ckeditor/ckeditor.js") }}"></script>
+    <script src="{{ asset("adminlte/plugins/ckeditor/ckeditor.js") }}"></script>
     <script>
         var options = {
             filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
