@@ -18,6 +18,9 @@
             <section class="content">
 
                 <!-- Default box -->
+                <div class="container">
+                    @include("admin.layouts.session-success")
+                </div>
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Весь список</h3>
@@ -33,6 +36,7 @@
                     </div>
                     <div class="card-body p-0">
                         <a href="{{ route("article.create") }}" class="btn btn-primary btn-sm mt-3 mb-3 ml-3">Добавить статью</a>
+                        @if($articles->isNotEmpty())
                         <table class="table table-striped projects">
                             <thead>
                             <tr>
@@ -73,16 +77,31 @@
                                         </i>
                                         Редактировать
                                     </a>
-                                    <a class="btn btn-danger btn-sm" href="#">
+                                    <button
+                                        type="submit"
+                                        form="deleteArticleForm"
+                                        class="btn btn-danger btn-sm"
+                                    >
                                         <i class="fas fa-trash">
                                         </i>
                                         Удалить
-                                    </a>
+                                    </button>
+                                    <form
+                                        id="deleteArticleForm"
+                                        method="post"
+                                        action="{{ route("article.destroy", ["article" => $article->id]) }}"
+                                    >
+                                        @csrf
+                                        @method("DELETE")
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach
                             </tbody>
                         </table>
+                        @else
+                            <h3 class="ml-3">Список статей пуст</h3>
+                        @endif
                         <a href="{{ route("article.create") }}" class="btn btn-primary btn-sm mt-3 mb-3 ml-3">Добавить статью</a>
                     </div>
                     <!-- /.card-body -->

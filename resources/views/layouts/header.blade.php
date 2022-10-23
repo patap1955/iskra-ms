@@ -18,6 +18,9 @@
                         <a href="{{ route("index") }}#services" class="nav__link">Услуги</a>
                     </li>
                     <li class="nav__item">
+                        <a href="{{ route("news") }}#services" class="nav__link">Статьи</a>
+                    </li>
+                    <li class="nav__item">
                         <a href="{{ route("index") }}#questions" class="nav__link">F&Q</a>
                     </li>
                     <li class="nav__item">

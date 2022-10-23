@@ -10,4 +10,5 @@ class Article extends Model
     use HasFactory;
 
     public $guarded = [];
+
 }

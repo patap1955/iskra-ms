@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\ContactsForm;
+use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
@@ -16,11 +17,12 @@ class PageController extends Controller
     }
 
     public function news() {
-        return view("pages.news.index");
+        $articles = Article::all()->sortByDesc("id");
+        return view("pages.news.index", compact("articles"));
     }
 
-    public function showNews($title) {
-        return view("pages.news.show");
+    public function showNews(Article $article) {
+        return view("pages.news.show", compact("article"));
     }
 
 //alex.media@bk.ru

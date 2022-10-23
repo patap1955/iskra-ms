@@ -134,7 +134,7 @@
                     </div>
                     <div class="repair__item-right">
                         <h3 class="repair__item-right-title">Сообщите нам о проблеме</h3>
-                        <p class="repair__item-right-text">Оставьте заявку на этом сайте, позвоните по телефону <a class="repair__item-right-text-link" href="tel:+74951233893">+7 (495) 123 38-93</a> или обратитесь прямо в офис</p>
+                        <p class="repair__item-right-text">Оставьте заявку на этом сайте, позвоните по&nbspтелефону <a class="repair__item-right-text-link" href="tel:+74951233893">+7&nbsp(495)&nbsp123&nbsp38&nbsp93</a> или обратитесь прямо в офис</p>
                     </div>
                 </div>
                 <div class="repair__item animate-right">
