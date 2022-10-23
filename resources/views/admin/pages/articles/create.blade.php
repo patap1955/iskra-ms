@@ -40,7 +40,7 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="articleInputTitle">Заголовок статьи</label>
-                                    <input name="title" type="text" class="form-control" id="articleInputTitle" value="{{ old("title") }}">
+                                    <input name="title" type="text" class="form-control" id="articleInputTitle" value="{{ old("title") }}" required>
                                     @error("title")
                                     <p class="text-danger">{{ $error }}</p>
                                     @enderror
@@ -58,6 +58,9 @@
                                         <div class="custom-file">
                                             <input name="img" type="file" class="custom-file-input" id="exampleInputFile">
                                             <label class="custom-file-label" for="exampleInputFile">Выбрать</label>
+                                            @error("img")
+                                            <p class="text-danger">{{ $message  }}</p>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -86,7 +89,7 @@
 @endsection
 
 @section("scripts")
-    <script src="{{ asset("adminlte//plugins/ckeditor/ckeditor.js") }}"></script>
+    <script src="{{ asset("adminlte/plugins/ckeditor/ckeditor.js") }}"></script>
     <script>
         var options = {
             filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',

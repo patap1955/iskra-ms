@@ -26,6 +26,7 @@ Auth::routes();
 
 Route::prefix('amg-admin')->group(function () {
     Route::get('/', \App\Http\Controllers\Admin\AdminController::class)->name("admin.index");
+    Route::post("gallery/{article}/img/delete", [\App\Http\Controllers\Admin\AdminImagesController::class, "deleteImageArticle"]);
     Route::resource("article", \App\Http\Controllers\Admin\AdminArticlesController::class);
 
 });
