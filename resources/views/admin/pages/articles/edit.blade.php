@@ -55,19 +55,31 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputFile">Миниатюра статьи</label>
-                                    <div class="input-group">
-                                        @if($article->img === null)
-                                        <div class="custom-file">
+                                    <div class="input-group" >
+                                        <div
+                                            class="custom-file"
+                                            style="display: {{ ($article->img !== null) ? 'none' : 'block' }}"
+                                            id="imgArticleInput"
+                                        >
                                             <input name="img" type="file" class="custom-file-input" id="exampleInputFile">
                                             <label class="custom-file-label" for="exampleInputFile">Выбрать</label>
                                             @error("img")
                                             <p class="text-danger">{{ $message  }}</p>
                                             @enderror
                                         </div>
-                                        @else
-                                            <div style="width: 300px">
-                                                <img src="{{ asset("storage/" . $article->img) }}" style="width: 100%">
-                                            </div>
+                                        @if($article->img !== null)
+                                        <div id="imgArticleBlock" style="width: 300px">
+                                            <img src="{{ asset("storage/" . $article->img) }}" style="width: 100%">
+                                            <button
+                                                type="button"
+                                                id="deleteImgArticle"
+                                                class="btn btn-danger mt-3"
+                                                data-src="{{ $article->img }}"
+                                                data-article-id="{{ $article->id }}"
+                                            >
+                                                Удалить
+                                            </button>
+                                        </div>
                                         @endif
                                     </div>
                                 </div>
@@ -96,7 +108,10 @@
 @endsection
 
 @section("scripts")
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="{{ asset("adminlte/js/componens/images.js") }}"></script>
     <script src="{{ asset("adminlte/plugins/ckeditor/ckeditor.js") }}"></script>
+
     <script>
         var options = {
             filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',

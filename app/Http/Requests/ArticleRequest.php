@@ -24,20 +24,20 @@ class ArticleRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules(Request $request)
+    public function rules()
     {
         return [
             "title" => [
                 "required",
                 "max:255",
-                Rule::unique('articles', 'title')->ignore($request->title)
+                Rule::unique('articles', 'title')->ignore($this->route("article"))
             ],
             //"title" => "required|unique:articles|max:255",
             'description' => 'max:255',
             "slug" => [
                 "required",
                 "max:255",
-                Rule::unique('articles', 'slug')->ignore($request->slug)
+                Rule::unique('articles', 'slug')->ignore($this->route("article"))
             ],
             //"slug" => "required|unique:articles|max:255",
             "img" => "file|image",

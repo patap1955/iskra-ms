@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\ArticleRequest;
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AdminArticlesController extends AdminController
 {
@@ -42,22 +43,12 @@ class AdminArticlesController extends AdminController
         $newFileName = time() . "." . $validate["img"]->clientExtension();
         $validate["img"] = $path . "/" .$newFileName;
         $validate["status_view"] = ($validate["status_view"]) ? true : false;
-        if (Article::create($validate)) {
+        if ($article = Article::create($validate)) {
             $request->file("img")->storeAs($path, $newFileName, "public");
+            session()->flash('success', 'Статья "' . $article->title . '" успешно добавленна');
             return redirect()->route('article.index');
         }
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-//    public function show($id)
-//    {
-//        //
-//    }
 
     /**
      * Show the form for editing the specified resource.
@@ -79,9 +70,16 @@ class AdminArticlesController extends AdminController
      */
     public function update(ArticleRequest $request, Article $article)
     {
+        $path = "uploads/articles/thumbs";
         $validate = $request->validated();
+        if (isset($validate["img"])) {
+            $newFileName = time() . "." . $validate["img"]->clientExtension();
+            $validate["img"] = $path . "/" .$newFileName;
+            $request->file("img")->storeAs($path, $newFileName, "public");
+        }
         $validate["status_view"] = ($validate["status_view"]) ? true : false;
         $article->update($validate);
+        session()->flash('success', 'Статья "' . $article->title . '" успешно обновленна');
         return redirect()->route('article.index');
     }
 
@@ -91,8 +89,13 @@ class AdminArticlesController extends AdminController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Article $article)
     {
-        //
+        if ($article->img !== null) {
+            Storage::disk("public")->delete($article->img);
+        }
+        session()->flash('success', 'Статья "' . $article->title . '" успешно удаленна');
+        $article->delete();
+        return redirect()->route('article.index');
     }
 }
