@@ -42,14 +42,14 @@
                                     <label for="articleInputTitle">Заголовок статьи</label>
                                     <input name="title" type="text" class="form-control" id="articleInputTitle" value="{{ old("title") }}" required>
                                     @error("title")
-                                    <p class="text-danger">{{ $error }}</p>
+                                    <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="articleInputDesc">Краткое орисание</label>
                                     <input name="description" type="text" class="form-control" id="articleInputDesc"  value="{{ old("description") }}">
                                     @error("description")
-                                    <p class="text-danger">{{ $error }}</p>
+                                    <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group">
