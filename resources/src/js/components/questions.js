@@ -99,31 +99,33 @@
   }
 
   questionsRender();
+    if (questionsButton) {
+      questionsButton.addEventListener("click", (event) => {
+            event.preventDefault();
+            const questionsList = document.querySelectorAll(".questions-item");
 
-  questionsButton.addEventListener("click", (event) => {
-    event.preventDefault();
-    const questionsList = document.querySelectorAll(".questions-item");
-
-    let activeQuestions = [];
-    questionsList.forEach((element) => {
-      if (element && element.dataset.questionsList == questionsStart) {
-        activeQuestions.push(element);
-      }
-    });
-    let questionsListId = event.target.dataset.questionsButton;
-    questionsButton.dataset.questionsButton = Number(questionsListId) + 1;
+            let activeQuestions = [];
+            questionsList.forEach((element) => {
+                if (element && element.dataset.questionsList == questionsStart) {
+                    activeQuestions.push(element);
+                }
+            });
+            let questionsListId = event.target.dataset.questionsButton;
+            questionsButton.dataset.questionsButton = Number(questionsListId) + 1;
 
 
-    if (!questionsRender()) {
-      event.target.dataset.questionsButton = "0";
-      questionsStart = 0;
-      questionsList.forEach((element) => {
-        if (element.dataset.questionsList != questionsStart) {
-          element.classList.remove("active");
-          element.removeAttribute("style");
-        }
-      });
+            if (!questionsRender()) {
+                event.target.dataset.questionsButton = "0";
+                questionsStart = 0;
+                questionsList.forEach((element) => {
+                    if (element.dataset.questionsList != questionsStart) {
+                        element.classList.remove("active");
+                        element.removeAttribute("style");
+                    }
+                });
+            }
+        });
     }
-  });
+
 
 })();

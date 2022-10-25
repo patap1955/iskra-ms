@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\ContactsForm;
 use App\Models\Article;
+use App\Models\Question;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
@@ -13,7 +14,8 @@ class PageController extends Controller
 {
     public function index()
     {
-        return view("pages.index.index");
+        $questions = Question::all()->where("status", "=", true)->take(4);
+        return view("pages.index.index", compact("questions"));
     }
 
     public function news() {
@@ -23,6 +25,11 @@ class PageController extends Controller
 
     public function showNews(Article $article) {
         return view("pages.news.show", compact("article"));
+    }
+
+    public function questions() {
+        $questions = Question::all()->where("status", "=", true);
+        return view("pages.questions.questions", compact("questions"));
     }
 
 //alex.media@bk.ru
