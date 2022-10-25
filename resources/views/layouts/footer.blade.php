@@ -2,7 +2,9 @@
     <div class="container footer">
         <div class="footer__block">
             <div class="footer__block-logo">
-                <img class="logo" src="{{ asset("assets/img/logo-footer.png") }}">
+                <a href="{{ route("index") }}">
+                    <img class="logo" src="{{ asset("assets/img/logo-footer.png") }}">
+                </a>
             </div>
             <div class="footer__block-info">
                 <p>Сайт разработан компанией</p>

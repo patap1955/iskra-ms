@@ -7,7 +7,9 @@
     <div class="container header">
         <div class="test">
             <div class="header__logo">
-                <img class="logo" src="{{ asset("assets/img/logo.png") }}">
+                <a href="{{ route("index") }}">
+                    <img class="logo" src="{{ asset("assets/img/logo.png") }}">
+                </a>
             </div>
             <nav class="nav" role="navigation">
                 <ul class="nav__list">
@@ -18,7 +20,7 @@
                         <a href="{{ route("index") }}#services" class="nav__link">Услуги</a>
                     </li>
                     <li class="nav__item">
-                        <a href="{{ route("news") }}#services" class="nav__link">Статьи</a>
+                        <a href="{{ route("news") }}" class="nav__link">Статьи</a>
                     </li>
                     <li class="nav__item">
                         <a href="{{ route("index") }}#questions" class="nav__link">F&Q</a>
