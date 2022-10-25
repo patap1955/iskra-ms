@@ -19,6 +19,7 @@ Route::prefix('amg-admin')->group(function () {
     Route::post("gallery/{article}/img/delete", [\App\Http\Controllers\Admin\AdminImagesController::class, "deleteImageArticle"]);
     Route::resource("article", \App\Http\Controllers\Admin\AdminArticlesController::class);
     Route::resource("question", \App\Http\Controllers\Admin\AdminQuestionsController::class);
+    Route::get("contacts", [\App\Http\Controllers\Admin\AdminContactsController::class, "index"])->name("admin.contacts");
 
 });
 
