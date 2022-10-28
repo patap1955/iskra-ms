@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -14,6 +15,7 @@ class AdminController extends Controller
 
     public function __invoke()
     {
-        return view("admin.pages.index.index");
+        $contacts = Contact::all()->sortByDesc("id")->take(10);
+        return view("admin.pages.index.index", compact("contacts"));
     }
 }
