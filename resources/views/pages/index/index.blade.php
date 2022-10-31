@@ -152,7 +152,7 @@
                     </div>
                     <div class="repair__item-right">
                         <h3 class="repair__item-right-title">Ремонт и замена компонентов</h3>
-                        <p class="repair__item-right-text">Ремонт 80% оборудований занимает от 30-ти минут до 3-х рабочих дней, остальное 20% - от 5-ти дней</p>
+                        <p class="repair__item-right-text">Ремонт 80% оборудования занимает от 30-ти минут до 3-х рабочих дней, остальное 20% - от 5-ти дней</p>
                     </div>
                 </div>
                 <div class="repair__item animate-right">
