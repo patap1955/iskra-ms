@@ -5,7 +5,7 @@
     </head>
 
     <body>
-        @include("layouts.header")
+    @include("layouts.header")
         <main class="main">
             @yield("content")
             <section id="form">
@@ -14,11 +14,11 @@
                     <div class="contacts__info">
                         <div class="contacts__info-item animate-left">
                             <span class="contacts__info-item-icon"><img src="{{ asset("assets/img/phone.svg") }}"></span>
-                            <p class="contacts__info-item-text"><a href="tel:+7 (495) 123 38-93">+7 (495) 123 38-93</a></p>
+                            <p class="contacts__info-item-text"><a href="tel:{{ $settings->phone }}">{{ $settings->phone }}</a></p>
                         </div>
                         <div class="contacts__info-item animate-left">
                             <span class="contacts__info-item-icon"><img src="{{ asset("assets/img/mail.svg") }}"></span>
-                            <p class="contacts__info-item-text"><a href="mailto:info@iskra.ru">info@iskra.ru</a></p>
+                            <p class="contacts__info-item-text"><a href="mailto:{{ $settings->email }}">{{ $settings->email }}</a></p>
                         </div>
                         <div class="contacts__info-item animate-right">
                             <span class="contacts__info-item-icon"><img src="{{ asset("assets/img/point.svg") }}"></span>

@@ -21,6 +21,7 @@ Route::prefix('amg-admin')->group(function () {
     Route::resource("question", \App\Http\Controllers\Admin\AdminQuestionsController::class);
     Route::get("contacts", [\App\Http\Controllers\Admin\AdminContactsController::class, "index"])->name("admin.contacts");
     Route::patch("contacts/{contact}", [\App\Http\Controllers\Admin\AdminContactsController::class, "completedStatus"])->name("admin.contacts.completed");
+    Route::resource("setting", \App\Http\Controllers\Admin\SettingsController::class);
 
 });
 

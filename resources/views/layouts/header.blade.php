@@ -31,7 +31,7 @@
                 </ul>
             </nav>
             <div class="header__contacts">
-                <a href="tel:+7 (495) 123 38-93" class="btn btn-primary header-contact-btn">+7 (495) 123 38-93</a>
+                <a href="tel:{{ $settings->phone }}" class="btn btn-primary header-contact-btn">{{ $settings->phone }}</a>
             </div>
         </div>
 
